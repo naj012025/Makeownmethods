@@ -1,12 +1,54 @@
+string[] guestList = { "Rebecca", "Nadia", "Noor", "Jonte" };
+string[] rsvps = new string[10];
+int count = 0;
+RSVP("Rebecca", 1, "none", true);
+RSVP("Nadia", 2, "Nuts", true);
+RSVP("Linh", 2, "none", false);
+RSVP("Tony", 1, "Jackfruit", true);// er ikke på gueslist array selv om det står true
+RSVP("Noor", 4, "none", false);
+RSVP("Jonte", 2, "Stone fruit", false);
+ShowRSVPs();
 
+        void RSVP(string name, int partySize, string allergies, bool inviteOnly)
+        {
+            if (inviteOnly)
+            {
+                bool found = false;
+                foreach (string guest in guestList)
+                {
+                    if (guest.Equals(name))
+                    {
+                        found = true;
+                        break;
+                    }
 
+                }
+                if (!found)
+                {
+                    Console.WriteLine($"Sorry, {name} is out on the guest list");
+                    return;
+                }
 
-/* double pi = 3.14159;
-      //to stk method calls.
-      PrintCircleArea(12);
-      PrintCircleArea(24);
-    
-      //method 
+            }
+
+            rsvps[count] = $"Name: {name}, \tParty Size: {partySize}, \tAllergies: {allergies}";
+            count++;
+        }
+        void ShowRSVPs()
+        {
+            Console.WriteLine("\nTotal RSVPs:");
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine(rsvps[i]);
+            }
+        }
+
+/\* double pi = 3.14159;
+//to stk method calls.
+PrintCircleArea(12);
+PrintCircleArea(24);
+
+      //method
       void PrintCircleinfo(int radius)
         {
             Console.WriteLine($"Circle with radius {radius}");
@@ -19,17 +61,17 @@
       //method
       void PrintCircleCircumference (int radius)
         {
-            
+
             double circumference = 2 * pi * radius;
             Console.WriteLine($"Circumference = {circumference}");
         }
     //method
       void PrintCircleArea(int radius)
         {
-            
+
             double area = pi * (radius * radius);
             Console.WriteLine($"Area = {area}");
-            
+
         } */
       /* Console.Clear();
       string[] students = {"Jenna", "Ayesha", "Carlos", "Viktor"};
@@ -47,15 +89,14 @@
             Console.WriteLine();
         } */
 
-
 // whole numbers array called schedule
-        int [] schedule = {800, 1200, 1600, 2000};
-        // brukt til og endre display tidene blir brukt under denne koden. parameterer blir separert med , i methoden.
-        DisplayAdjustmentTimes(schedule, 6, -6);
-        
+int [] schedule = {800, 1200, 1600, 2000};
+// brukt til og endre display tidene blir brukt under denne koden. parameterer blir separert med , i methoden.
+DisplayAdjustmentTimes(schedule, 6, -6);
+
         //method under med variabler som endre tiden med 12 timer mener jeg.
         void DisplayAdjustmentTimes(int[] times, int currentGMT, int newGMT)
-        { 
+        {
             // Math.Abs gir kun positiv tall fra 0 til whatever.
             int diff = 0;
             if(Math.Abs(newGMT) > 12 || Math.Abs(currentGMT) > 12)
@@ -79,39 +120,39 @@
         }
 
 string[] ipv4Input = {"107.31.1.5", "255.0.0.255", "555..0.555", "255...255"};
-        string[] address;
-        bool validLength = false;
-        bool validZeroes = false;
-        bool validRange = false;
+string[] address;
+bool validLength = false;
+bool validZeroes = false;
+bool validRange = false;
 
-        foreach (string ip in ipv4Input) 
+        foreach (string ip in ipv4Input)
         {
             address = ip.Split(".", StringSplitOptions.RemoveEmptyEntries);
 
-            ValidateLength(); 
-            ValidateZeroes(); 
+            ValidateLength();
+            ValidateZeroes();
             ValidateRange();
 
-            if (validLength && validZeroes && validRange) 
+            if (validLength && validZeroes && validRange)
             {
                 Console.WriteLine($"{ip} is a valid IPv4 address");
-            } 
-            else 
+            }
+            else
             {
                 Console.WriteLine($"{ip} is an invalid IPv4 address");
             }
         }
 
-        void ValidateLength() 
+        void ValidateLength()
         {
             validLength = address.Length == 4;
         };
 
-        void ValidateZeroes() 
+        void ValidateZeroes()
         {
-            foreach (string number in address) 
+            foreach (string number in address)
             {
-                if (number.Length > 1 && number.StartsWith("0")) 
+                if (number.Length > 1 && number.StartsWith("0"))
                 {
                     validZeroes = false;
                     return;
@@ -121,12 +162,12 @@ string[] ipv4Input = {"107.31.1.5", "255.0.0.255", "555..0.555", "255...255"};
             validZeroes = true;
         }
 
-        void ValidateRange() 
+        void ValidateRange()
         {
-            foreach (string number in address) 
+            foreach (string number in address)
             {
                 int value = int.Parse(number);
-                if (value < 0 || value > 255) 
+                if (value < 0 || value > 255)
                 {
                     validRange = false;
                     return;
@@ -135,24 +176,22 @@ string[] ipv4Input = {"107.31.1.5", "255.0.0.255", "555..0.555", "255...255"};
             validRange = true;
         }
 
-
-
-/* // denne metoden er nå laget som hver gang jeg caller den når jeg trenger den gir den meg en 5 rolls med 1 til 99 i roll?
-        // mener jeg kan hive inn denne i en egen class via public void random()
-        void DisplayRandomNumbers()
-        {
-            Random random = new Random();
-            for(int i =0; i < 5; i++)
-            {
-                Console.Write($"{random.Next(1, 100)} ");
-            }
+/\* // denne metoden er nå laget som hver gang jeg caller den når jeg trenger den gir den meg en 5 rolls med 1 til 99 i roll?
+// mener jeg kan hive inn denne i en egen class via public void random()
+void DisplayRandomNumbers()
+{
+Random random = new Random();
+for(int i =0; i < 5; i++)
+{
+Console.Write($"{random.Next(1, 100)} ");
+}
 
             Console.WriteLine();
         }
             Console.WriteLine("Generating Random Number: ");
             DisplayRandomNumbers(); */
 
-         
+
 
         /* Console.WriteLine("Before the method");
         // OBS!!!! ha stor bokstav i methods tydligvis så breaker det coden med at app control policy i windows
@@ -181,12 +220,12 @@ string[] ipv4Input = {"107.31.1.5", "255.0.0.255", "555..0.555", "255...255"};
         {
             Console.WriteLine("Invalid GMT");
         }
-        else if (newGMT <= 0 && currentGMT <= 0 || newGMT >= 0 && currentGMT >= 0) 
+        else if (newGMT <= 0 && currentGMT <= 0 || newGMT >= 0 && currentGMT >= 0)
         {
             diff = 100 * (Math.Abs(newGMT) - Math.Abs(currentGMT));
             AdjustTimes();
-        } 
-        else 
+        }
+        else
         {
             diff = 100 * (Math.Abs(newGMT) + Math.Abs(currentGMT));
             AdjustTimes();
@@ -221,10 +260,10 @@ string[] ipv4Input = {"107.31.1.5", "255.0.0.255", "555..0.555", "255...255"};
             Console.WriteLine();
         }
 
-        void AdjustTimes() 
+        void AdjustTimes()
         {
             /* Adjust the times by adding the difference, keeping the value within 24 hours */
-            for (int i = 0; i < times.Length; i++) 
+            for (int i = 0; i < times.Length; i++)
             {
                 times[i] = ((times[i] + diff)) % 2400;
             }
